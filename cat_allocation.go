@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/olivere/elastic/v7/uritemplates"
+	"github.com/zhufuyin/elastic/v7/uritemplates"
 )
 
 // CatAllocationService provides a snapshot of how many shards are allocated

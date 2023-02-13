@@ -13,7 +13,7 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/mocktracer"
 
-	"github.com/olivere/elastic/v7"
+	"github.com/zhufuyin/elastic/v7"
 )
 
 func TestTransportIntegration(t *testing.T) {

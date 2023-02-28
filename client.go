@@ -868,11 +868,11 @@ func (c *Client) tracef(ctx context.Context, format string, args ...interface{})
 }
 
 // dumpRequest dumps the given HTTP request to the trace log.
-func (c *Client) dumpRequest(r *http.Request) {
+func (c *Client) dumpRequest(ctx context.Context, r *http.Request) {
 	if c.tracelog != nil {
 		out, err := httputil.DumpRequestOut(r, true)
 		if err == nil {
-			c.tracef(r.Context(), "%s\n", string(out))
+			c.tracef(ctx, "%s\n", string(out))
 		}
 	}
 }
@@ -1436,7 +1436,7 @@ func (c *Client) PerformRequest(ctx context.Context, opt PerformRequestOptions) 
 		}
 
 		// Tracing
-		c.dumpRequest((*http.Request)(req))
+		c.dumpRequest(ctx, (*http.Request)(req))
 
 		// Get response
 		res, err := c.c.Do((*http.Request)(req).WithContext(ctx))

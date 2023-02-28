@@ -837,7 +837,6 @@ func (c *Client) Stop() {
 // errorf logs to the error log.
 func (c *Client) errorf(ctx context.Context, format string, args ...interface{}) {
 	if c.errorlog != nil {
-		c.errorlog.Printf(format, args...)
 		if logger, ok := c.infolog.(LoggerWithContext); ok {
 			logger.PrintfWithContext(ctx, format, args...)
 		} else {
@@ -860,7 +859,6 @@ func (c *Client) infof(ctx context.Context, format string, args ...interface{}) 
 // tracef logs to the trace log.
 func (c *Client) tracef(ctx context.Context, format string, args ...interface{}) {
 	if c.tracelog != nil {
-		c.tracelog.Printf(format, args...)
 		if logger, ok := c.infolog.(LoggerWithContext); ok {
 			logger.PrintfWithContext(ctx, format, args...)
 		} else {

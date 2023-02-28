@@ -878,11 +878,11 @@ func (c *Client) dumpRequest(ctx context.Context, r *http.Request) {
 }
 
 // dumpResponse dumps the given HTTP response to the trace log.
-func (c *Client) dumpResponse(resp *http.Response) {
+func (c *Client) dumpResponse(ctx context.Context, resp *http.Response) {
 	if c.tracelog != nil {
 		out, err := httputil.DumpResponse(resp, true)
 		if err == nil {
-			c.tracef(context.Background(), "%s\n", string(out))
+			c.tracef(ctx, "%s\n", string(out))
 		}
 	}
 }
@@ -1482,7 +1482,7 @@ func (c *Client) PerformRequest(ctx context.Context, opt PerformRequestOptions) 
 		}
 
 		// Tracing
-		c.dumpResponse(res)
+		c.dumpResponse(ctx, res)
 
 		// Log deprecation warnings as errors
 		if len(res.Header["Warning"]) > 0 {
